@@ -1892,6 +1892,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38630,7 +38631,7 @@ var render = function() {
     ]),
     _c("br"),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-hover" }, [
+    _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -38685,7 +38686,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
@@ -38693,7 +38694,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Item Price")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
+        _c("th", [_vm._v("Actions")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
@@ -54500,8 +54503,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravelapi\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravelapi\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\vue-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\vue-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
