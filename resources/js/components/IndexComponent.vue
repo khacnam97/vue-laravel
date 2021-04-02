@@ -10,13 +10,14 @@
             </div>
         </div><br />
 
-        <table class="table table-hover">
-            <thead>
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
                 <th>ID</th>
                 <th>Item Name</th>
                 <th>Item Price</th>
                 <th>Actions</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
