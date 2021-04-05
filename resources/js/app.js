@@ -1,5 +1,7 @@
 // app.js
 
+import IndexProjectComponent from "./components/IndexProductComponent.vue";
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -17,6 +19,7 @@ import HomeComponent from './components/HomeComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
+import IndexProductComponent from "./components/IndexProductComponent";
 
 const routes = [
     {
@@ -38,6 +41,11 @@ const routes = [
         name: 'edit',
         path: '/edit/:id',
         component: EditComponent
+    },
+    {
+        name: 'index-product',
+        path: '/product',
+        component: IndexProductComponent
     }
 ];
 

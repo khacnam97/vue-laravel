@@ -17,13 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Lấy danh sách sản phẩm
-Route::get('products', 'Api\ProductController@index')->name('products.index');
+Route::get('/products', 'Api\ProductController@index')->name('products.index');
 
 // Lấy thông tin sản phẩm theo id
 Route::get('products/{id}', 'Api\ProductController@show')->name('products.show');
 
 // Thêm sản phẩm mới
-Route::post('products', 'Api\ProductController@store')->name('products.store');
+Route::post('products/create', 'Api\ProductController@store')->name('products.store');
 
 // Cập nhật thông tin sản phẩm theo id
 # Sử dụng put nếu cập nhật toàn bộ các trường
@@ -32,7 +32,7 @@ Route::put('products/{id}', 'Api\ProductController@update')->name('products.upda
 Route::patch('products/{id}', 'Api\ProductController@update')->name('products.update');
 
 // Xóa sản phẩm theo id
-Route::delete('products/{id}', 'Api\ProductController@destroy')->name('products.destroy');
+Route::delete('/products/delete/{id}', 'Api\ProductController@destroy')->name('products.destroy');
 
 Route::post('/post/create', 'PostController@store');
 Route::get('/post/edit/{id}', 'PostController@edit');
