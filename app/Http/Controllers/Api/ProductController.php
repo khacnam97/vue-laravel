@@ -64,8 +64,10 @@ class ProductController extends Controller
      * @param Product $product
      * @throws \Exception
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
+        $product = Product::find($id);
         $product->delete();
+        return response()->json('successfully deleted');
     }
 }
