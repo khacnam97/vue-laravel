@@ -20,6 +20,7 @@ import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
 import IndexProductComponent from "./components/IndexProductComponent";
+import CreateProductComponent from "./components/CreateProductComponent";
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         name: 'index-product',
         path: '/product',
         component: IndexProductComponent
+    },
+    {
+        name: 'create-product',
+        path: '/create-product',
+        component: CreateProductComponent
     }
 ];
 
