@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2">
-                <router-link :to="{ name: 'create' }" class="btn btn-primary">Create product</router-link>
+                <router-link :to="{ name: 'create-product' }" class="btn btn-primary">Create product</router-link>
             </div>
         </div><br />
 
@@ -41,14 +41,14 @@ export default {
         }
     },
     created() {
-        let uri = 'http://127.0.0.1:8000/api/products';
+        let uri = 'http://127.0.0.1:8000/api/product';
         this.axios.get(uri).then(response => {
             this.products = response.data.data;
         });
     },
     methods: {
         deleteProduct(id, index) {
-            let uri = `http://127.0.0.1:8000/api/products/delete/${id}`;
+            let uri = `http://127.0.0.1:8000/api/product/delete/${id}`;
             this.axios.delete(uri).then(response => {
                 this.products.splice(index, 1);
             });
