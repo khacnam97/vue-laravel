@@ -7,18 +7,22 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductCollection;
 use App\Product;
 use Illuminate\Http\Request;
+use File;
+use Image;
 
 class ProductController extends Controller
 {
     public function store(Request $request)
     {
+        $image = $request->file('img');
+        $imageName = "images/product/" . $request->file('img')->getClientOriginalName();
+        Image::make($image)->save(public_path($imageName));
         $post = new Product([
             'title' => $request->get('title'),
             'name' => $request->get('name'),
             'price' => $request->get('price'),
-            'img' => $request->get('img')
+            'img' => $imageName
         ]);
-        dd("dd");
         $post->save();
 
         return response()->json('successfully added');
@@ -30,9 +34,9 @@ class ProductController extends Controller
     }
     public function delete($id)
     {
-        $post = Product::find($id);
+        $product = Product::find($id);
 
-        $post->delete();
+        $product->delete();
 
         return response()->json('successfully deleted');
     }
