@@ -1802,23 +1802,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      product: {}
+      FILE: null,
+      name: '',
+      title: '',
+      price: ''
     };
   },
   methods: {
-    handleFileUpload: function handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+    // onImageChange(event) {
+    //     this.FILE = URL.createObjectURL(event.target.files[0]);
+    //     this.FILE = event.target.files[0];
+    //     console.log(this.FILE);
+    // },
+    onImageChange: function onImageChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    createImage: function createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.FILE = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
     },
     addProduct: function addProduct() {
       var _this = this;
 
-      console.log(this.file);
+      var formData = new FormData();
+      formData.append('img', this.FILE, this.FILE.name);
+      formData.append('name', this.name);
+      formData.append('title', this.title);
+      formData.append('price', this.price);
       console.log(this.product);
       var uri = 'http://127.0.0.1:8000/api/product/create';
-      this.axios.post(uri, this.product).then(function (response) {
+      this.axios.post(uri, formData).then(function (response) {
         _this.$router.push({
           name: 'product'
         });
@@ -38955,19 +38984,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.product.title,
-                    expression: "product.title"
+                    value: _vm.title,
+                    expression: "title"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.product.title },
+                domProps: { value: _vm.title },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.product, "title", $event.target.value)
+                    _vm.title = $event.target.value
                   }
                 }
               })
@@ -38985,19 +39014,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.product.name,
-                    expression: "product.name"
+                    value: _vm.name,
+                    expression: "name"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.product.name },
+                domProps: { value: _vm.name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.product, "name", $event.target.value)
+                    _vm.name = $event.target.value
                   }
                 }
               })
@@ -39015,19 +39044,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.product.price,
-                    expression: "product.price"
+                    value: _vm.price,
+                    expression: "price"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.product.price },
+                domProps: { value: _vm.price },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.product, "price", $event.target.value)
+                    _vm.price = $event.target.value
                   }
                 }
               })
@@ -39043,15 +39072,22 @@ var render = function() {
               _c("input", {
                 ref: "file",
                 staticClass: "form-control",
-                attrs: { type: "file", id: "file" },
-                on: {
-                  change: function($event) {
-                    return _vm.handleFileUpload()
-                  }
-                }
+                attrs: { type: "file", id: "img" },
+                on: { change: _vm.onImageChange }
               })
             ])
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _vm.FILE
+            ? _c("div", { staticClass: "col-md-3" }, [
+                _c("img", {
+                  staticClass: "img-responsive",
+                  attrs: { src: _vm.FILE, height: "70", width: "90" }
+                })
+              ])
+            : _vm._e()
         ]),
         _c("br"),
         _vm._v(" "),
