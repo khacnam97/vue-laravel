@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('img');
-        $imageName = "images/product/" . $request->file('img')->getClientOriginalName();
+        $imageName = "/images/product/" . $request->file('img')->getClientOriginalName();
         Image::make($image)->save(public_path($imageName));
         $post = new Product([
             'title' => $request->get('title'),
@@ -31,6 +31,29 @@ class ProductController extends Controller
     public function index()
     {
         return new ProductCollection(Product::all());
+    }
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return response()->json($product);
+    }
+
+    public function update($id, Request $request)
+    {
+        $image = $request->file('img');
+        $all = $request->all();
+
+        if ($image){
+            $imageName = "/images/product/" . $request->file('img')->getClientOriginalName();
+            Image::make($image)->save(public_path($imageName));
+            $all['img'] = $imageName;
+        }
+
+        $product = Product::find($id);
+
+        $product->update($all);
+
+        return response()->json('successfully updated');
     }
     public function delete($id)
     {
