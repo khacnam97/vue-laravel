@@ -25,7 +25,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.title }}</td>
                 <td>{{ product.price }}</td>
-                <td><router-link :to="{name: 'edit', params: { id: product.id }}" class="btn btn-primary">Edit</router-link></td>
+                <td><router-link :to="{name: 'edit-product', params: { id: product.id }}" class="btn btn-primary">Edit</router-link></td>
                 <td><button class="btn btn-danger" @click.prevent="deleteProduct(product.id,key)">Delete</button></td>
             </tr>
             </tbody>
