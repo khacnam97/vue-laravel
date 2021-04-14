@@ -5,6 +5,8 @@ import IndexProjectComponent from "./components/IndexProductComponent.vue";
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuelidate from 'vuelidate';
+Vue.use(Vuelidate);
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
