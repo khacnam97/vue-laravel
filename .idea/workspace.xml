@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ec409d20-9deb-4c7b-8990-8704465f978c" name="Default Changelist" comment="02/4/2021">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CreateProductComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CreateProductComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="12/4/2021" />
+        <entry key="$PROJECT_DIR$" value="13/4/2021" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -200,7 +197,8 @@
       <workItem from="1618189334862" duration="23232000" />
       <workItem from="1618275666349" duration="10765000" />
       <workItem from="1618295597822" duration="11801000" />
-      <workItem from="1618362079765" duration="23189000" />
+      <workItem from="1618362079765" duration="24359000" />
+      <workItem from="1618448798346" duration="22181000" />
     </task>
     <task id="LOCAL-00001" summary="02/4/2021">
       <created>1617356629988</created>
