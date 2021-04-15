@@ -12,15 +12,16 @@
 /*    background: #EFE;*/
 /*}*/
 
+/*.dirty:focus {*/
+/*    outline-color: #8E8;*/
+/*}*/
 
-.error {
-    /*border-color: red;*/
+.form-group--error{
     color: red;
 }
-.error-border ,.error-border:focus{
+.form-group--error >.form__input, .form-group--error >.error{
     border-color: red;
 }
-
 /*.error:focus {*/
 /*    outline-color: #F99;*/
 /*}*/
@@ -35,28 +36,27 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Product Title:</label>
-                        <input type="text" class="form-control" v-model="title">
+                        <input type="text" class="form-control" v-model="form.title">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group"  v-if="$v.name.required">
-                        <label >Product Name:</label>
-                        <input type="text" class="form-control " v-model.trim="$v.name.$model">
+                    <div class="form-group" :class="{ 'form-group--error': $v.form.name.$error }">
+                        <label class="form__label">Name</label>
+                        <input class="form__input form-control" v-model.trim="$v.form.name.$model"/>
+                        <div class="error" v-if="!$v.form.name.required && $v.form.name.$error">Field is required</div>
                     </div>
-                    <div class="form-group"  v-else>
-                        <label >Product Name:</label>
-                        <input type="text" class="form-control error-border" v-model.trim="$v.name.$model">
-                        <div class="error" v-if="!$v.name.required">Name is required</div>
-                    </div>
+                    <p>{{$v.form.name}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Product Price:</label>
-                        <input type="text" class="form-control" v-model="price">
+                    <div class="form-group" :class="{ 'form-group--error': $v.form.price.$error }">
+                        <label class="form__label">Price</label>
+                        <input class="form__input form-control" v-model.trim="$v.form.price.$model"/>
+                        <div class="error" v-if="!$v.form.price.decimal && $v.form.price.$error">Field is number</div>
+                        <div class="error" v-if="!$v.form.price.required && $v.form.price.$error">Field is required</div>
                     </div>
                 </div>
             </div>
@@ -69,8 +69,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3" v-if="img">
-                    <img :src="img" class="img-responsive" height="70" width="90">
+                <div class="col-md-3" v-if="form.img">
+                    <img :src="form.img" class="img-responsive" height="70" width="90">
                 </div>
             </div><br />
             <div class="form-group">
@@ -81,24 +81,31 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-const { required, maxLength, minLength } = require("vuelidate/lib/validators");
+import { required,decimal } from 'vuelidate/lib/validators';
 export default {
     data(){
         return {
-            errors : [],
-            FILE: null,
-            name: '',
-            title : '',
-            price : '',
-            img : null
-
+            form: {
+                errors: [],
+                FILE: null,
+                name: '',
+                title: '',
+                price: 0,
+                img: null
+            }
         }
     },
     validations: {
-        name: {
-            required
-        },
+        form: {
+            name: {
+                required,
+
+            },
+            price: {
+                decimal,
+                required
+            }
+        }
     },
     methods: {
         onImageChange(event) {
@@ -116,11 +123,14 @@ export default {
             formData.append('name',this.name);
             formData.append('title',this.title);
             formData.append('price',this.price);
-
-            let uri = 'http://127.0.0.1:8000/api/product/create';
-            this.axios.post(uri, formData).then((response) => {
-                this.$router.push({name: 'product'});
-            });
+            console.log(this.$v.form.$error);
+            if(!this.$v.form.$error) {return;}
+            else {
+                let uri = 'http://127.0.0.1:8000/api/product/create';
+                this.axios.post(uri, formData).then((response) => {
+                    this.$router.push({name: 'product'});
+                });
+            }
         }
     }
 }
