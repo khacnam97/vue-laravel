@@ -47,7 +47,7 @@ const routes = [
         component: EditComponent
     },
     {
-        name: 'index-product',
+        name: 'product',
         path: '/product',
         component: IndexProductComponent
     },
